@@ -2,6 +2,7 @@ import "./Styles.scss";
 
 const App = () => {
   const buttons = [5, 10, 15, 25, 50, "Custom"];
+  const error = "Can't be zero";
 
   return (
     <main>
@@ -9,16 +10,16 @@ const App = () => {
         <div className="logo-container"></div>
         <div className="app">
           <div className="left">
-            <div className="bill-section">
+            <div className="simple-section">
               <div className="labels">
                 <p className="label-p">Bill</p>
-                <p className="error">Please Type the Bill</p>
+                <p className="error">{error}</p>
               </div>
-              <input type="number" placeholder="0" />
+              <input type="number" placeholder="0" className="big-input" id="bill" />
             </div>
 
             <div className="tip-section">
-              <label htmlFor="tips">Select Tip %</label>
+              <p className="label-p">Select Tip %</p>
               <div className="grid">
                 {buttons.map((button) => {
                   return (
@@ -28,37 +29,39 @@ const App = () => {
                       value={button}
                       key={button}
                     >
-                      {button}
+                      {button}%
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            <div className="people-section">
+            <div className="simple-section">
               <div className="labels">
                 <p className="label-p">Number of People</p>
-                <p className="error">Can't be zero</p>
+                <p className="error">{error}</p>
               </div>
-              <input type="number" placeholder="0" />
+              <input type="number" placeholder="0" className="big-input" id="people"/>
             </div>
           </div>
 
           <div className="right">
-            <div className="amount-section">
-              <div className="text">
-                <h2>Tip Amount</h2>
-                <p>/ person</p>
+            <div className="sections">
+              <div className="amount-section">
+                <div className="text">
+                  <h2>Tip Amount</h2>
+                  <p>/ person</p>
+                </div>
+                <h1>$0.00</h1>
               </div>
-              <h1>$0.00</h1>
-            </div>
 
-            <div className="amount-section">
-              <div className="text">
-                <h2>Total</h2>
-                <p>/ person</p>
+              <div className="amount-section">
+                <div className="text">
+                  <h2>Total</h2>
+                  <p>/ person</p>
+                </div>
+                <h1>$0.00</h1>
               </div>
-              <h1>$0.00</h1>
             </div>
 
             <button className="reset">RESET</button>
