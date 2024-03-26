@@ -142,6 +142,31 @@ main {
         text-align: center;
         height: 60px;
         border-radius: 8px;
+
+        &:hover {
+          color: $Very-dark-cyan;
+          background-color: $Light-grayish-cyan;
+          cursor: pointer;
+        }
+      }
+
+      input.custom {
+        all: unset;
+        font-size: 24px;
+        text-align: center;
+        background-color: $Very-light-grayish-cyan;
+        color: $Very-dark-cyan;
+        border-radius: 8px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
       }
     }
   }
@@ -195,5 +220,10 @@ main {
     text-align: center;
     border-radius: 8px;
     font-size: 24px;
+
+    &:hover {
+      background-color: $Light-grayish-cyan;
+      cursor: pointer;
+    }
   }
 }

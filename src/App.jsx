@@ -1,7 +1,12 @@
 import "./Styles.scss";
+import { useState } from "react";
 
 const App = () => {
-  const buttons = [5, 10, 15, 25, 50, "Custom"];
+
+  const [tipAmount, setTipAmount] = useState(0)
+  const [perPerson, setPerPerson] = useState(0)
+
+  const buttons = [5, 10, 15, 25, 50];
   const error = "Can't be zero";
 
   return (
@@ -33,6 +38,7 @@ const App = () => {
                     </button>
                   );
                 })}
+                <input type="number" placeholder="Custom" className="custom" />
               </div>
             </div>
 
@@ -52,7 +58,7 @@ const App = () => {
                   <h2>Tip Amount</h2>
                   <p>/ person</p>
                 </div>
-                <h1>$0.00</h1>
+                <h1>${tipAmount.toFixed(2)}</h1>
               </div>
 
               <div className="amount-section">
@@ -60,7 +66,7 @@ const App = () => {
                   <h2>Total</h2>
                   <p>/ person</p>
                 </div>
-                <h1>$0.00</h1>
+                <h1>${perPerson.toFixed(2)}</h1>
               </div>
             </div>
 
