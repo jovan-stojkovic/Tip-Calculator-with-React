@@ -1,13 +1,37 @@
 import "./Styles.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const App = () => {
-
-  const [tipAmount, setTipAmount] = useState(0)
-  const [perPerson, setPerPerson] = useState(0)
+  const [tipAmount, setTipAmount] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [bill, setBill] = useState(0);
+  const [people, setPeople] = useState('');
+  const [percent, setPercent] = useState("");
+  const [active, setActive] = useState('')
+  const [calculated, setCalculated] = useState('')
 
   const buttons = [5, 10, 15, 25, 50];
   const error = "Can't be zero";
+
+  useEffect(() => {
+    const billTotal = people ? bill / people : 0;
+    setTotal(billTotal);
+  }, [bill, people]);
+
+  const handleButtonClick = (percentage) => {
+    setPercent(percentage);
+    setActive(percentage);
+    const tip = (bill * percentage) / 100;
+    setCalculated(tip);
+  };
+
+  useEffect(() => {
+    const calculatedPercentage = people ? calculated / people : 0
+  }, [])
+
+  const refresh = () => {
+    window.location.reload();
+  }
 
   return (
     <main>
@@ -20,7 +44,15 @@ const App = () => {
                 <p className="label-p">Bill</p>
                 <p className="error">{error}</p>
               </div>
-              <input type="number" placeholder="0" className="big-input" id="bill" />
+              <input
+                type="number"
+                placeholder="0"
+                className="big-input"
+                id="bill"
+                onChange={(e) => {
+                  setBill(e.target.value);
+                }}
+              />
             </div>
 
             <div className="tip-section">
@@ -33,6 +65,8 @@ const App = () => {
                       className="button"
                       value={button}
                       key={button}
+                      onClick={() => handleButtonClick(button)}
+                      //useRef() to stay active
                     >
                       {button}%
                     </button>
@@ -47,7 +81,15 @@ const App = () => {
                 <p className="label-p">Number of People</p>
                 <p className="error">{error}</p>
               </div>
-              <input type="number" placeholder="0" className="big-input" id="people"/>
+              <input
+                type="number"
+                placeholder="0"
+                className="big-input"
+                id="people"
+                onChange={(e) => {
+                  setPeople(e.target.value);
+                }}
+              />
             </div>
           </div>
 
@@ -66,11 +108,11 @@ const App = () => {
                   <h2>Total</h2>
                   <p>/ person</p>
                 </div>
-                <h1>${perPerson.toFixed(2)}</h1>
+                <h1>${total.toFixed(2)}</h1>
               </div>
             </div>
 
-            <button className="reset">RESET</button>
+            <button className="reset" onClick={refresh}>RESET</button>
           </div>
         </div>
       </div>
