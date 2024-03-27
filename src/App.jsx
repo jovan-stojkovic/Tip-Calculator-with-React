@@ -16,9 +16,7 @@ const App = () => {
   useEffect(() => {
     const billTotal = people ? bill / people : 0;
     setTotal(billTotal);
-  }, [bill, people]);
 
-  useEffect(() => {
     const errorClass = bill && !people ? "show" : "";
     setShowError(errorClass);
   }, [bill, people]);
