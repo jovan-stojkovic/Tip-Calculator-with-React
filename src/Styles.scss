@@ -88,6 +88,11 @@ main {
 
       .error {
         color: rgb(200, 66, 66);
+        visibility: hidden;
+
+        &.show {
+          visibility: visible;
+        }
       }
     }
 
@@ -102,24 +107,25 @@ main {
       padding-right: 20px;
       border: 3px solid $Very-light-grayish-cyan;
 
-
       &:focus {
-      border: 3px solid $Strong-cyan;  
+        border: 3px solid $Strong-cyan;
+      }
+
+      &::placeholder {
+        color: $Grayish-cyan;
       }
     }
 
-
-
     #bill {
-        background-image: url("src/assets/icon-dollar.svg");
-        background-position: 20px;
-        background-repeat: no-repeat;
+      background-image: url("src/assets/icon-dollar.svg");
+      background-position: 20px;
+      background-repeat: no-repeat;
     }
 
     #people {
-        background-image: url("src/assets/icon-person.svg");
-        background-position: 20px;
-        background-repeat: no-repeat;
+      background-image: url("src/assets/icon-person.svg");
+      background-position: 20px;
+      background-repeat: no-repeat;
     }
 
     input::-webkit-outer-spin-button,
@@ -157,8 +163,9 @@ main {
           cursor: pointer;
         }
 
-        &.active {
-          background-color: red;
+        &:focus {
+          background-color: $Strong-cyan;
+          color: $Very-dark-cyan;
         }
       }
 
@@ -169,7 +176,15 @@ main {
         background-color: $Very-light-grayish-cyan;
         color: $Very-dark-cyan;
         border-radius: 8px;
+        border: 3px solid white;
 
+        &:focus {
+          border: 3px solid $Strong-cyan;
+        }
+  
+        &::placeholder {
+          color: $Grayish-cyan;
+        }
         &:hover {
           cursor: pointer;
         }
